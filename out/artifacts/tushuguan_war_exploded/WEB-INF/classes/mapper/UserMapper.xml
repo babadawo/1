@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <!--登录-->
+    <resultMap id="map1" type="user">
+        <id property="userid" column="id"></id>
+        <result property="admin" column="admin"></result>
+        <result property="password" column="password"></result>
+        <result property="username" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="date" column="date"></result>
+        <result property="adress" column="adress"></result>
+        <result property="root" column="root"></result>
+        <result property="tel" column="tel"></result>
+        <result property="headpath" column="headpath"></result>
+    </resultMap>
+
+    <select id="login" parameterType="User" resultMap="map1">
+        select * from user where admin= #{admin} and password =#{password};
+    </select>
+
+    <!--查询所有用户-->
+    <select id="selectAllUser" parameterType="User" resultMap="map1">
+        select * from user
+        <where>
+            <if test="username!=null and username!=''" >
+                and name like '%${username}%'
+            </if>
+        </where>
+
+        <!--<where>-->
+        <!--<if test="password!=null">-->
+        <!--and password= #{password}-->
+        <!--</if>-->
+        <!--</where>-->
+    </select>
+
+
+    <!--    修改当前用户密码-->
+    <update id="updatethispsw">
+        update user set password= #{0} where =#{1};
+    </update>
+    <!--添加用户-->
+    <insert id="adduser" parameterType="User">
+        insert into user(name,admin,password,sex,adress,tel,root)values(#{username},#{admin},#{password},#{sex},#{adress},#{tel},#{root});
+    </insert>
+    <!--    查询用户-->
+    <select id="selectuser" parameterType="User" resultMap="map1">
+        select * from user
+        <where>
+            <if test="username!=null and username!=''">
+                name=#{username}
+            </if>
+        </where>
+    </select>
+    <!--    通过ID查用户-->
+    <select id="selectUserById" resultMap="map1">
+        select * from user where id=#{0}
+    </select>
+    <!--    通过ID删除用户-->
+    <delete id="deleteUserById">
+        delete from user where id=#{0}
+    </delete>
+    <!--    通过ID修改用户资料-->
+    <update id="updateUserById2" parameterType="User">
+        update user set admin=#{admin} ,sex=#{sex} ,tel=#{tel} ,adress=#{adress}, root=#{root},headpath=#{headpath} where id =#{userid}
+    </update>
+    <!--    通过ID修改密码-->
+    <update id="updatePassWordById2">
+        update user set password=#{0} where id =#{1}
+    </update>
+</mapper>
