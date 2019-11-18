@@ -4,14 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.BookMapper">
 <!--显示所有图书数据 包括借阅人-->
-    <resultMap id="map1" type="Book">
+        <resultMap id="map1" type="Book">
         <id property="id" column="id"></id>
         <result property="name" column="name"></result>
         <result property="writer" column="writer"></result>
         <result property="cbs" column="cbs"></result>
         <result property="go" column="go"></result>
         <association property="user" resultMap="user"></association>
-</resultMap>
+        </resultMap>
+
         <resultMap id="user" type="pojo.User">
             <id property="userid" column="uid"></id>
             <result property="username" column="uname"></result>
@@ -20,7 +21,6 @@
     <select id="selectbook" resultMap="map1">
         SELECT b.id,b.name,b.writer,b.cbs,b.go,u.name as uname,u.id as uid
         FROM book AS b LEFT JOIN borrow AS bo ON bo.book_id=b.id LEFT JOIN USER AS  u ON bo.user_id = u.id
-
         <where>
             <if test="name!=null and name!=''" >
                 and b.name like '%${name}%'
@@ -129,4 +129,17 @@
     <delete id="deleteById">
         delete  from book where id =#{0}
     </delete>
+
+
+    <select id="soushu" parameterType="user" resultMap="map1">
+        select * from book
+        <where>
+            <if test="name!=null and name!=''" >
+                and name=#{name}
+            </if>
+            <if test="writer!=null and writer!=''" >
+                and writer=#{writer}
+            </if>
+        </where>
+    </select>
 </mapper>

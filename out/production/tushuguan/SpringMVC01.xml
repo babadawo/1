@@ -17,6 +17,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login*.action"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/soushu.action"></mvc:exclude-mapping>
             <bean class="interceptor.Interceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

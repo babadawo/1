@@ -5,8 +5,10 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import pojo.Book;
 import pojo.Borrow;
@@ -223,5 +225,13 @@ public class BookController {
         mav.addObject("billlist", pageInfo);
         mav.setViewName("billList.jsp");
         return mav;
+    }
+
+
+    @RequestMapping("/soushu.action")
+    @ResponseBody
+    public List<Book> soushu(@RequestBody Book book){
+        List<Book> books = bookDao.soushu(book);
+        return books;
     }
 }

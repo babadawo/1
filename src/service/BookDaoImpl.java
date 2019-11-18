@@ -67,4 +67,9 @@ public class BookDaoImpl implements BookDao {
     public void deleteById(Integer id) {
         mapper.deleteById(id);
     }
+
+    @Override
+    public List<Book> soushu(Book book) {
+        return  mapper.soushu(book);
+    }
 }

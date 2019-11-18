@@ -202,6 +202,7 @@ public class UserController {
         return mav;
 
     }
+
     @ResponseBody
     @RequestMapping("/check.action")
     public String check(String admin){

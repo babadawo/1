@@ -18,4 +18,5 @@ public interface BookMapper {
     public List<Book> selectbook2(Book book);
     public Book selectBookById(Integer id);
     public void deleteById(Integer id);
+    public List<Book> soushu (Book book);
 }

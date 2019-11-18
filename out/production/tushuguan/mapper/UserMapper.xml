@@ -71,4 +71,8 @@
     <update id="updatePassWordById2">
         update user set password=#{0} where id =#{1}
     </update>
+
+    <select id="check" parameterType="java.lang.String" resultType="integer">
+        select count(*) from user where admin=#{admin}
+    </select>
 </mapper>
