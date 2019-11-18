@@ -42,6 +42,9 @@
           <element id="file-copy" path="D:/commons-io-2.4.jar" />
           <element id="file-copy" path="D:/jsqlparser-0.9.5.jar" />
           <element id="file-copy" path="D:/pagehelper-5.1.2.jar" />
+          <element id="file-copy" path="D:/jackson-annotations-2.4.0.jar" />
+          <element id="file-copy" path="D:/jackson-core-2.4.2.jar" />
+          <element id="file-copy" path="D:/jackson-databind-2.4.2.jar" />
         </element>
       </element>
     </root>

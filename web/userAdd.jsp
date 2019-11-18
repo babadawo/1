@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link type="text/css" rel="stylesheet" href="css/style.css">
-
+	<script src="js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <div class="main">
@@ -21,7 +21,10 @@
 				</tr>
 				 <tr>
 					<td class="field">用户账号：</td>
-					<td><input type="text" name="admin" class="text" id="loginName" value=""> <font color="red">*</font><font color="red" id="loginName_span"></font></td>
+					<td><input type="text" name="admin" class="text" id="loginName" value="">
+						<font color="red">*</font><font color="red" id="loginName_span"></font>
+						<span></span>
+					</td>
 				</tr>
 				 <tr>
 					<td class="field">用户密码：</td>
@@ -67,6 +70,18 @@
 	</form>
 </div>
 
+<script type="text/javascript">
+	var admin=$("input[name=admin]");
+	admin.on("blur",function () {
+		$.ajax({
+			url:"<%=request.getContextPath()%>/check.action",
+			data:"admin="+admin.val(),
+			success:function (d) {
+				$("span").html(d);
+            }
+		})
+    })
 
+</script>
 
 </body></html>

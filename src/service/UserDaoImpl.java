@@ -58,4 +58,9 @@ public class UserDaoImpl implements UserDao {
     public void updatePassWordById2(String newPassword, Integer id) {
         mapper.updatePassWordById2(newPassword,id);
     }
+
+    @Override
+    public int check(String admin) {
+        return mapper.check(admin);
+    }
 }

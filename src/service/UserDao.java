@@ -14,4 +14,5 @@ public interface UserDao {
     public void deleteUserById(Integer id);
     public void updateUserById2(User user);
     public void updatePassWordById2(String newPassword,Integer id);
+    public int check(String admin);
 }
